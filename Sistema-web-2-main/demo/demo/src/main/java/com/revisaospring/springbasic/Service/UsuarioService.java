@@ -1,5 +1,7 @@
 package com.revisaospring.springbasic.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,5 +23,21 @@ public class UsuarioService {
 
         //relizando a criptografia da senha 
          oUsuario.setPassword(encoder.encode(oUsuario.getPassword()));
+
+
+
+if (oUsuario.getRole()== null || oUsuario.getRole().isEmpty()) {
+    oUsuario.setRole("ROLE_USER");
+}
+
+
+
     }
+
+
+    public List<Usuario> listarTodosUsers(){
+        return oUsuarioRepository.findAll();
+
+    }
+
 }
