@@ -21,7 +21,7 @@ public class Usuario {
     private String nome;
 
     @Column (name = "telefone", unique=false, length = 50)
-    private int telefone;
+    private String telefone;
 
     @Column (name = "username", unique=false, length = 100)
     private String username;
@@ -34,7 +34,7 @@ public class Usuario {
 
     public Usuario () {}
 
-    public Usuario(long id, String nome, int telefone, String username, String password, String role) {
+    public Usuario(long id, String nome, String telefone, String username, String password, String role) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
