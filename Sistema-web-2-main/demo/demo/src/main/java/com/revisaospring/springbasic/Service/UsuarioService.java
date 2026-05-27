@@ -18,26 +18,26 @@ public class UsuarioService {
 
     @Autowired
     private PasswordEncoder encoder;
-    
+
     public void cadastrarUsuario(Usuario oUsuario){
 
-        //relizando a criptografia da senha 
-         oUsuario.setPassword(encoder.encode(oUsuario.getPassword()));
+        // criptografa senha
+        oUsuario.setPassword(
+            encoder.encode(oUsuario.getPassword())
+        );
 
+        // define role padrão
+        if (oUsuario.getRole() == null || oUsuario.getRole().isEmpty()) {
 
+            oUsuario.setRole("ROLE_USER");
+        }
 
-if (oUsuario.getRole()== null || oUsuario.getRole().isEmpty()) {
-    oUsuario.setRole("ROLE_USER");
-}
-
-
-
+        // SALVA NO BANCO
+        oUsuarioRepository.save(oUsuario);
     }
-
 
     public List<Usuario> listarTodosUsers(){
+
         return oUsuarioRepository.findAll();
-
     }
-
 }
